@@ -9,6 +9,9 @@ test: qserver
 	./qserver 5 10
 	./qserver 10 100
 
+valgrind: qserver
+	valgrind --leak-check=full ./qserver 1 1
+
 $(OBJS): %.o: %.c src/qs_common.h src/qs_lvmpool.h $(LUADIR)/lua.h
 	gcc -c -g -o $@ $< -I$(LUADIR)
 
